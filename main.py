@@ -21,6 +21,10 @@ def main():
 
     dd.calculate_and_display_average_price(stock_data)
 
+    threshold = float(input('Введите значение порога колебания цены, при котором следует уведомлять пользователя: '))
+    message = dd.notify_if_strong_fluctuations(stock_data, threshold)
+    if message:
+        print(message)
 
 if __name__ == "__main__":
     main()
