@@ -26,5 +26,9 @@ def main():
     if message:
         print(message)
 
+    # Принимает DataFrame и имя файла и сохраняет данные об акциях в указанный файл.
+    dd.export_data_to_csv(stock_data, filename=f"{ticker}_{period}_stock_price_chart.csv")
+
+
 if __name__ == "__main__":
     main()

@@ -1,4 +1,5 @@
 import yfinance as yf
+import pandas as pd
 
 
 def fetch_stock_data(ticker, period='1mo'):
@@ -32,3 +33,10 @@ def notify_if_strong_fluctuations(data, threshold):
                 f'Колебание составило: {price_fluctuation:.2f} %')
     else:
         return (f'Цена акций не колебалась более чем на {threshold} % за выбранный период\n')
+
+
+def export_data_to_csv(data, filename):
+    """Принимает DataFrame и имя файла и сохраняет данные об акциях в указанный файл"""
+    df = pd.DataFrame(data)
+    df.to_csv(filename, index=False)
+    print(f'Данные сохранены в файле {filename}')
