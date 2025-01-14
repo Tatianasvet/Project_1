@@ -54,6 +54,9 @@ ___Open,High,Low,Close,Volume,Dividends,Stock Splits,Moving_Average
 - calculate_rsi(data, window_size=5):
 расчет индекса RSI
 
+- calculate_macd(data):
+расчет индекса MACD
+
     
 
 main.py:
@@ -71,3 +74,5 @@ data_plotting.py:
 ![img_1.png](img_1.png)
 - create_rsi_plot(data, ticker): Создаёт график, отображающий индекс RSI
 ![img_2.png](img_2.png)
+- create_macd_plot(data): Создаёт график, отображающий индекс MACD
+- ![img_3.png](img_3.png)

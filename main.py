@@ -19,6 +19,9 @@ def main():
     # Calculate RSI
     dd.calculate_rsi(stock_data)
 
+    # Calculate MACD
+    dd.calculate_macd(stock_data)
+
     # Plot the data
     dplt.create_and_save_plot(stock_data, ticker, period)
 

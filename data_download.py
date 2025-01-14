@@ -51,3 +51,24 @@ def calculate_rsi(data, window_size=5):
     rsi = 100 - (100 / (1 + rs))
     data['RSI'] = rsi
     return rsi
+
+def calculate_macd(data):
+    """Расчет индекса MACD"""
+
+    # Получить 26-дневную EMA цены закрытия
+    k = data['Close'].ewm(span=12, adjust=False, min_periods=12).mean()
+    # Получить 12-дневную EMA цены закрытия
+    d = data['Close'].ewm(span=26, adjust=False, min_periods=26).mean()
+    # Вычтите 26-дневную EMA из 12-дневной EMA, чтобы получить MACD
+    macd = k - d
+    # Получите 9-дневную экспоненциальную скользящую среднюю MACD для линии триггера
+    macd_s = macd.ewm(span=9, adjust=False, min_periods=9).mean()
+    # Рассчитайте разницу между MACD — триггером для значения конвергенции/дивергенции
+    macd_h = macd - macd_s
+    # Добавьте все наши новые значения для MACD во фрейм данных
+    data['macd'] = data.index.map(macd)
+    data['macd_h'] = data.index.map(macd_h)
+    data['macd_s'] = data.index.map(macd_s)
+    # Просмотр наших данных
+    pd.set_option("display.max_columns", None)
+
