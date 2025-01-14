@@ -68,4 +68,6 @@ data_plotting.py:
 - create_and_save_plot(data, ticker, period, filename): Создаёт график, отображающий цены закрытия и скользящие средние. 
 предоставляет возможность сохранения графика в файл. Параметр filename опционален; если он не указан, имя файла 
 генерируется автоматически.
+![img_1.png](img_1.png)
 - create_rsi_plot(data, ticker): Создаёт график, отображающий индекс RSI
+![img_2.png](img_2.png)
