@@ -51,8 +51,10 @@ ___Open,High,Low,Close,Volume,Dividends,Stock Splits,Moving_Average
 241.9199981689453,243.7100067138672,240.0500030517578,242.6999969482422,37564700,0.0,0.0,243.42400207519532___
 
 
-    
+- calculate_rsi(data, window_size=5):
+расчет индекса RSI
 
+    
 
 main.py:
 
@@ -66,3 +68,4 @@ data_plotting.py:
 - create_and_save_plot(data, ticker, period, filename): Создаёт график, отображающий цены закрытия и скользящие средние. 
 предоставляет возможность сохранения графика в файл. Параметр filename опционален; если он не указан, имя файла 
 генерируется автоматически.
+- create_rsi_plot(data, ticker): Создаёт график, отображающий индекс RSI

@@ -26,6 +26,26 @@ def create_and_save_plot(data, ticker, period, filename=None):
 
     if filename is None:
         filename = f"{ticker}_{period}_stock_price_chart.png"
-
     plt.savefig(filename)
     print(f"График сохранен как {filename}")
+    create_rsi_plot(data, ticker)
+    filename = f"{ticker}_{period}_RSI.png"
+    plt.savefig(filename)
+    print(f"График RSI сохранен как {filename}")
+
+
+def create_rsi_plot(data, ticker):
+    plt.figure(figsize=(10, 6))
+    print(data)
+    if 'Date' not in data:
+        if pd.api.types.is_datetime64_any_dtype(data.index):
+            dates = data.index.to_numpy()
+            plt.plot(dates, data['RSI'], label='RSI')
+    else:
+        if not pd.api.types.is_datetime64_any_dtype(data['Date']):
+            data['Date'] = pd.to_datetime(data['Date'])
+        plt.plot(data['Date'], data['RSI'], label='RSI')
+    plt.title(f"{ticker} RSI с течением времени")
+    plt.xlabel("Дата")
+    plt.ylabel("RSI")
+    plt.legend()
