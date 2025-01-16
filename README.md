@@ -3,7 +3,7 @@
 data_download.py: 
 
 
-- fetch_stock_data(ticker, period): 
+- fetch_stock_data(ticker, period='1mo', start=None, end=None): 
 Получает исторические данные об акциях для указанного тикера и временного периода. Возвращает DataFrame с данными.
 
 - add_moving_average(data, window_size): 

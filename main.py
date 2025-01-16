@@ -8,10 +8,17 @@ def main():
     print("Общие периоды времени для данных о запасах включают: 1д, 5д, 1мес, 3мес, 6мес, 1г, 2г, 5г, 10л, с начала года, макс.")
 
     ticker = input("Введите тикер акции (например, «AAPL» для Apple Inc):»")
-    period = input("Введите период для данных (например, '1mo' для одного месяца): ")
+    period = input("Введите период для данных (например, '1mo' для одного месяца)\n"
+                   "Eсли хотите ввести конкретные даты, введите «date»: ")
+    if period == 'date':
+        start = input("Введите дату начала периода в формате 'ГГГГ-ММ-ДД':")
+        end = input("Введите дату окончания периода в формате 'ГГГГ-ММ-ДД':")
 
-    # Fetch stock data
-    stock_data = dd.fetch_stock_data(ticker, period)
+        # Fetch stock data
+        stock_data = dd.fetch_stock_data(ticker, start=start, end=end)
+    else:
+        # Fetch stock data
+        stock_data = dd.fetch_stock_data(ticker, period=period)
 
     # Add moving average to the data
     stock_data = dd.add_moving_average(stock_data)
