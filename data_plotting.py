@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
+import matplotlib.style
 import pandas as pd
 
 
-def create_and_save_plot(data, ticker, period, filename=None):
+def create_and_save_plot(data, ticker, period, style='default', filename=None):
     plt.figure(figsize=(10, 6))
+    plt.style.use(style)
 
     if 'Date' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
@@ -18,6 +20,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
             data['Date'] = pd.to_datetime(data['Date'])
         plt.plot(data['Date'], data['Close'], label='Close Price')
         plt.plot(data['Date'], data['Moving_Average'], label='Moving Average')
+
 
     plt.title(f"{ticker} Цена акций с течением времени")
     plt.xlabel("Дата")
@@ -34,7 +37,6 @@ def create_and_save_plot(data, ticker, period, filename=None):
 
 def create_rsi_plot(data, ticker, period):
     plt.figure(figsize=(10, 6))
-    print(data)
     if 'Date' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
             dates = data.index.to_numpy()
@@ -57,7 +59,6 @@ def create_rsi_plot(data, ticker, period):
 
 def create_macd_plot(data, ticker, period):
     plt.figure(figsize=(10, 6))
-    print(data)
     if 'Date' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
             dates = data.index.to_numpy()

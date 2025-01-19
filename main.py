@@ -1,6 +1,6 @@
 import data_download as dd
 import data_plotting as dplt
-
+import matplotlib.style
 
 def main():
     print("Добро пожаловать в инструмент получения и построения графиков биржевых данных.")
@@ -29,8 +29,10 @@ def main():
     # Calculate MACD
     dd.calculate_macd(stock_data)
 
+    print(f"Примеры стилей графиков: {matplotlib.style.available}")
+    style = input("Выберите стиль из списка: ")
     # Plot the data
-    dplt.create_and_save_plot(stock_data, ticker, period)
+    dplt.create_and_save_plot(stock_data, ticker, period, style)
 
     dd.calculate_and_display_average_price(stock_data)
 
