@@ -5,6 +5,7 @@ import pandas as pd
 
 def create_and_save_plot(data, ticker, period, style='default', filename=None):
     plt.figure(figsize=(10, 6))
+    # graphic style
     plt.style.use(style)
 
     if 'Date' not in data:

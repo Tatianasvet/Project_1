@@ -29,8 +29,13 @@ def main():
     # Calculate MACD
     dd.calculate_macd(stock_data)
 
-    print(f"Примеры стилей графиков: {matplotlib.style.available}")
-    style = input("Выберите стиль из списка: ")
+    # choice of style
+    choice = input('хотите поменять стиль графиков? (y, n):')
+    style = 'fast'
+    if choice == 'y':
+        print(f"Примеры стилей графиков: {matplotlib.style.available}")
+        style = input("Выберите стиль из списка: ")
+
     # Plot the data
     dplt.create_and_save_plot(stock_data, ticker, period, style)
 
