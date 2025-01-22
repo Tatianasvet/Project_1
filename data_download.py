@@ -71,3 +71,14 @@ def calculate_macd(data):
     # Просмотр наших данных
     pd.set_option("display.max_columns", None)
 
+
+def calculate_std(data):
+    '''расчет стандартного отклонения цен на момент закрытия'''
+    std = data['Close'].std()
+    return std
+
+
+def display_std(std: float):
+    '''вывод в консоль стандартного отклонения цен на момент закрытия'''
+    print(f'Стандартное отклонение цен на момент закрытия: {std:.3f}')
+

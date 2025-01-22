@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.style
 import pandas as pd
+from data_download import calculate_std
 
 
 def create_and_save_plot(data, ticker, period, style='default', filename=None):
@@ -13,6 +14,8 @@ def create_and_save_plot(data, ticker, period, style='default', filename=None):
             dates = data.index.to_numpy()
             plt.plot(dates, data['Close'].values, label='Close Price')
             plt.plot(dates, data['Moving_Average'].values, label='Moving Average')
+            std = calculate_std(data)
+            plt.fill_between(dates, data['Close'] - std, data['Close'] + std, color='lightgrey', label='Standard Deviation')
         else:
             print("Информация о дате отсутствует или не имеет распознаваемого формата.")
             return
@@ -21,6 +24,8 @@ def create_and_save_plot(data, ticker, period, style='default', filename=None):
             data['Date'] = pd.to_datetime(data['Date'])
         plt.plot(data['Date'], data['Close'], label='Close Price')
         plt.plot(data['Date'], data['Moving_Average'], label='Moving Average')
+        std = calculate_std(data)
+        plt.fill_between(data['Date'], data['Close'] - std, data['Close'] + std, color='lightgrey', label='Standard Deviation')
 
 
     plt.title(f"{ticker} Цена акций с течением времени")

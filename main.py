@@ -40,6 +40,7 @@ def main():
     dplt.create_and_save_plot(stock_data, ticker, period, style)
 
     dd.calculate_and_display_average_price(stock_data)
+    dd.display_std(dd.calculate_std(stock_data))
 
     threshold = float(input('Введите значение порога колебания цены, при котором следует уведомлять пользователя: '))
     message = dd.notify_if_strong_fluctuations(stock_data, threshold)
