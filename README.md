@@ -80,3 +80,7 @@ data_plotting.py:
 ![img_2.png](img_2.png)
 - create_macd_plot(data): Создаёт график, отображающий индекс MACD
 - ![img_3.png](img_3.png)
+- create_interactive_chart(data, ticker, col_list=None): Создание интерактивного графика цен
+- ![img_4.png](img_4.png)
+- create_interactive_rsi(data, ticker, col_list=None): Создание интерактивного графика индекса RSI
+- ![img_5.png](img_5.png)

@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 import matplotlib.style
 import pandas as pd
 from data_download import calculate_std
@@ -85,3 +86,36 @@ def create_macd_plot(data, ticker, period):
     filename = f"{ticker}_{period}_MACD.png"
     plt.savefig(filename)
     print(f"График MACD сохранен как {filename}")
+
+
+def create_interactive_chart(data, ticker, col_list=None):
+    '''Создание интерактивного графика цен'''
+    fig = go.Figure()
+    if not col_list:
+        fig.add_trace(go.Scatter(x=data.index, y=data['Open'], mode='lines', name='Цена открытия'))
+        fig.add_trace(go.Scatter(x=data.index, y=data['Close'], mode='lines', name='Цена закрытия'))
+        fig.add_trace(go.Scatter(x=data.index, y=data['High'], mode='lines', name='Максимальная цена'))
+        fig.add_trace(go.Scatter(x=data.index, y=data['Low'], mode='lines', name='Минимальная цена'))
+        fig.update_layout(title=f"{ticker} График цен",
+                          xaxis_title="Date", yaxis_title="Price", showlegend=True)
+    else:
+        for i in col_list:
+            fig.add_trace(go.Scatter(x=data.index, y=data[i], mode='lines', name=i))
+        fig.update_layout(title=f"{ticker} График по выбранным столбцам",
+                          xaxis_title="Date", showlegend=True)
+    fig.show()
+
+
+def create_interactive_rsi(data, ticker, col_list=None):
+    '''Создание интерактивного графика индекса RSI'''
+    fig = go.Figure()
+    if not col_list:
+        fig.add_trace(go.Scatter(x=data.index, y=data['RSI'], mode='lines', name='RSI'))
+        fig.update_layout(title=f"{ticker} RSI",
+                          xaxis_title="Date", yaxis_title="RSI", showlegend=True)
+    else:
+        for i in col_list:
+            fig.add_trace(go.Scatter(x=data.index, y=data[i], mode='lines', name=i))
+        fig.update_layout(title=f"{ticker} График RSI",
+                          xaxis_title="Date", showlegend=True)
+    fig.show()

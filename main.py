@@ -50,6 +50,12 @@ def main():
     # Принимает DataFrame и имя файла и сохраняет данные об акциях в указанный файл.
     dd.export_data_to_csv(stock_data, filename=f"{ticker}_{period}_stock_price_chart.csv")
 
+    dplt.create_interactive_chart(stock_data, ticker)
+    print('В браузере выведен интерактивный график цен')
+
+    dplt.create_interactive_rsi(stock_data,ticker)
+    print('В браузере выведен интерактивный график индекса RSI')
+
 
 if __name__ == "__main__":
     main()
